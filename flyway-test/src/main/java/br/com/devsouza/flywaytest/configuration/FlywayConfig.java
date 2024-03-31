@@ -11,8 +11,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class MigrationConfig {
+public class FlywayConfig {
     
+    @Value("${spring.profiles.active}")
+    private String profileActive;
     @Value("${spring.datasource.url}")
     private String url;
     @Value("${spring.datasource.username}")
@@ -22,10 +24,12 @@ public class MigrationConfig {
 
     @Bean
     public Flyway flyway() throws SQLException {
+        boolean cleanDisabled = profileActive == "test";
+
         Flyway flyway = Flyway.configure()
             .dataSource(url, username, password)
             .locations("classpath:db/migration")
-            .cleanDisabled(false)
+            .cleanDisabled(cleanDisabled)
             .load();
 
         return flyway;
