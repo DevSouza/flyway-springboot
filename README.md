@@ -3,7 +3,7 @@
 Projeto desenvolvido à fim de teste.
 
 ### Objetivos
-- [x] Implementar test de migração.
+- [x] Implementar teste para os endpoint GET `v1/migrations` e POST `v1/migrations`.
 - [x] Implementar migração (dry-run) no endpoint GET `v1/migrations`.
 - [x] Implementar migração (live-run) no endpoint POST `v1/migrations`.
 
